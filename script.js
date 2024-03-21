@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           return isValid;
         },
-        formDataCollector: async (hiddenFieldNames) => {
+        formDataCollector: (hiddenFieldNames) => {
           let formData, formHiddenFieldNames;
           [formData, formHiddenFieldNames] = CollectFormData(myForm);
           //splits Name field into first and last by first space
