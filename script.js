@@ -1,14 +1,9 @@
-<input
-  type="hidden"
-  name="ld_bookit_log_id"
-  data-name="LeanData Hidden Field"
-  placeholder=""
-  id="ld_bookit_log_id"
-/>
 <!-- LeanData BookIt -->
 <script>
+    console.log('Loaded 1');
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('Loaded 2');
     (function (windowRef, documentRef, fileLocation, functionName) {
       windowRef['LeanDataCalendaringObjName'] = functionName;
       windowRef[functionName] = (...args) => {
