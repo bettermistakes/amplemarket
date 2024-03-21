@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     apiRoutingOn: true,
     popupModalOn: true,
   });
+
+  let enrichedData = null;
+  
   (function () {
     let isSubmitting = false;
     // Attaching BookIt process to your form submit button
@@ -107,6 +110,23 @@ document.addEventListener('DOMContentLoaded', () => {
                   return false;
                 }
 
+                const enrichReq = await fetch(`https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${email.val()}`);
+
+                const enrichRes = await enrichReq.json();
+
+                enrichedData = {
+                  title: enrichRes.title,
+                  person_location: enrichRes.location,
+                  size: enrichRes.company.size,
+                  industry: enrichRes.company.industry,
+                  company_location: enrichRes.company.location,
+                  is_b2b: enrichRes.company.is_b2b,
+                  is_b2c: enrichRes.company.is_b2c,
+                  technologies: enrichRes.company.technologies.join(', '),
+                };
+
+                console.log('enrichedData', enrichedData);
+
                 // run bookit code
                 BookItAPIRouting(myForm);
               }
@@ -181,12 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.lastname = '';
           }
 
-          console.log('before');
-
-          await delay(5000);
-
-          console.log('after');
-
+          console.log('enrichedData', enrichedData);
           debugger;
 
           return formData;
