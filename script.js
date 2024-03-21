@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   let enrichedData = null;
-  
+
   (function () {
     let isSubmitting = false;
     // Attaching BookIt process to your form submit button
@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
               // validate email field
               // get the email field
               const email = $('.business-only-email-field');
+
+              console.log($('.business-only-email-field')); // Check if it selects the correct element
+              console.log(email.val()); // Check what value it holds
 
               // split email at '@' character to get domain
               let domainPart = email.val().split('@')[1];
@@ -110,7 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
                   return false;
                 }
 
-                const enrichReq = await fetch(`https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${encodeURIComponent(email.val())}`);
+                const enrichReq = await fetch(
+                  `https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${encodeURIComponent(
+                    email.val()
+                  )}`
+                );
 
                 const enrichRes = await enrichReq.json();
 
