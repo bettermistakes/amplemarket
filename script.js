@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
           postFullRequestData();
         },
         afterSubmit: async (formData) => {
+          console.log('formData', formData)
           growsumo.data.name = formData['Name'];
           growsumo.data.email = formData['Company-Email'];
           let domainPart = formData['Company-Email'].split('@')[1];
