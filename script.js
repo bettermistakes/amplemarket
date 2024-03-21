@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   company_location: enrichRes.company.location,
                   is_b2b: enrichRes.company.is_b2b,
                   is_b2c: enrichRes.company.is_b2c,
-                  technologies: enrichRes.company.technologies.join(', '),
+                  // technologies: enrichRes.company.technologies.join(', '),
                 };
 
                 // run bookit code
