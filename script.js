@@ -201,8 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.lastname = '';
           }
 
-          console.log('enrichedData', enrichedData);
-          debugger;
+          // Merge enrichedData with formData
+          if (enrichedData) {
+            formData = { ...formData, ...enrichedData };
+          }
 
           return formData;
         },
