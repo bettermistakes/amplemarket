@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   return false;
                 }
 
-                const enrichReq = await fetch(`https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${email.val()}`);
+                const enrichReq = await fetch(`https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${encodeURIComponent(email.val())}`);
 
                 const enrichRes = await enrichReq.json();
 
