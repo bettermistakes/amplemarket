@@ -125,8 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
                   technologies: enrichRes.company.technologies.join(', '),
                 };
 
-                console.log('enrichedData', enrichedData);
-
                 // run bookit code
                 BookItAPIRouting(myForm);
               }
