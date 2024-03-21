@@ -63,10 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
               // validate email field
               // get the email field
               const email = $('.business-only-email-field');
-
-              console.log($('.business-only-email-field')); // Check if it selects the correct element
-              console.log(email.val()); // Check what value it holds
-
               // split email at '@' character to get domain
               let domainPart = email.val().split('@')[1];
               // convert the domain to lowercase before comparing, just in case the user typed it in caps
@@ -155,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
           postFullRequestData();
         },
         afterSubmit: async (formData) => {
-          console.log('formData', formData)
           growsumo.data.name = formData['Name'];
           growsumo.data.email = formData['Company-Email'];
           let domainPart = formData['Company-Email'].split('@')[1];
