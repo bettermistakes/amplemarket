@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   title: enrichRes.title,
                   person_location: enrichRes.location,
                   size: enrichRes.company.size,
+                  sales_team_size_enriched: enrichRes.company.department_headcount.sales,
                   industry: enrichRes.company.industry,
                   company_location: enrichRes.company.location,
                   is_b2b: enrichRes.company.is_b2b,
