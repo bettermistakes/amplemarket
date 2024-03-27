@@ -109,24 +109,30 @@ document.addEventListener('DOMContentLoaded', () => {
                   return false;
                 }
 
-                const enrichReq = await fetch(
-                  `https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${encodeURIComponent(
-                    email.val()
-                  )}`
-                );
-
-                const enrichRes = await enrichReq.json();
+                let enrichRes;
+                try {
+                  const enrichReq = await fetch(
+                    `https://app.amplemarket.com/api/v1/amplemarket_inbounds/enrich_person?email=${encodeURIComponent(
+                      email.val()
+                    )}`
+                  );
+                  if (!enrichReq.ok) throw new Error('Failed to fetch');
+                  enrichRes = await enrichReq.json();
+                } catch (error) {
+                  console.error('Error fetching enriched data:', error);
+                  enrichRes = null;
+                }
 
                 enrichedData = {
-                  title: enrichRes.title,
-                  person_location: enrichRes.location,
-                  size: enrichRes.company.size,
-                  sales_team_size_enriched: enrichRes.company.department_headcount.sales,
-                  industry: enrichRes.company.industry,
-                  company_location: enrichRes.company.location,
-                  is_b2b: enrichRes.company.is_b2b,
-                  is_b2c: enrichRes.company.is_b2c,
-                  // technologies: enrichRes.company.technologies.join(', '),
+                  title: enrichRes ? enrichRes.title : null,
+                  person_location: enrichRes ? enrichRes.location : null,
+                  size: enrichRes && enrichRes.company ? enrichRes.company.size : null,
+                  sales_team_size_enriched: enrichRes && enrichRes.company && enrichRes.company.department_headcount ? enrichRes.company.department_headcount.sales : null,
+                  industry: enrichRes && enrichRes.company ? enrichRes.company.industry : null,
+                  company_location: enrichRes && enrichRes.company ? enrichRes.company.location : null,
+                  is_b2b: enrichRes && enrichRes.company ? enrichRes.company.is_b2b : null,
+                  is_b2c: enrichRes && enrichRes.company ? enrichRes.company.is_b2c : null,
+                  // technologies: enrichRes && enrichRes.company ? enrichRes.company.technologies.join(', ') : null,
                 };
 
                 // run bookit code
